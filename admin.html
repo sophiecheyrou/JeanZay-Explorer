@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#12233f"><link rel="manifest" href="manifest.json"><link rel="apple-touch-icon" href="assets/icon-512.png"><link rel="stylesheet" href="styles.css">
+  <title>Jean Zay Explorer — Organisateur</title>
+</head>
+<body class="admin-page">
+  <header class="app-header"><a class="brand" href="index.html#accueil"><img src="assets/icon-192.png" alt=""><span><strong>Jean Zay Explorer</strong><small>Espace organisateur · Module 1</small></span></a><a class="secondary-button small-button" href="index.html#accueil">Retour</a></header>
+  <main class="admin-main">
+    <section class="admin-login card" id="adminLogin">
+      <p class="kicker dark">ACCÈS PROTÉGÉ</p><h1>Espace organisateur</h1><p>Le code est utilisé ici, uniquement pour ouvrir le tableau de pilotage.</p>
+      <label>Code organisateur<input id="adminCodeInput" type="password" inputmode="numeric" autocomplete="current-password" placeholder="••••"></label>
+      <p class="form-message" id="adminLoginMessage"></p><button class="primary-button" id="adminLoginButton">Ouvrir le tableau de bord</button>
+    </section>
+    <section class="hidden" id="adminDashboard">
+      <div class="screen-heading"><div><p class="kicker dark">PILOTAGE</p><h1>Tableau de bord</h1></div><button class="secondary-button small-button" id="adminLogoutButton">Déconnexion</button></div>
+      <div class="metric-grid admin-metrics"><article><b id="adminTeams">—</b><small>Équipes</small></article><article><b id="adminProofs">—</b><small>Preuves</small></article><article><b id="adminReturns">—</b><small>Retours</small></article></div>
+      <article class="card"><div class="card-row"><div><p class="kicker dark">CONNEXION</p><h2>Google Apps Script</h2></div><button class="icon-button" id="adminRefreshButton">↻</button></div><p id="adminApiStatus">Vérification…</p></article>
+      <article class="card"><p class="kicker dark">MODULE 1</p><h2>Fondations terminées</h2><p>Ce tableau confirme la connexion au backend. La validation détaillée des photos sera ajoutée dans le module Administration.</p><div id="adminSummary"></div></article>
+    </section>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="config.js"></script><script src="admin.js"></script>
+</body>
+</html>

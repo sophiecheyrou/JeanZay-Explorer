@@ -1,0 +1,20 @@
+window.JZE_PLACES = Object.freeze([
+  {id:1,name:'Village d’Auteuil',category:'patrimoine',emoji:'🏘️',distance:'Proche',description:'Le cœur historique et commerçant d’Auteuil.'},
+  {id:2,name:'Ressourcerie d’Apprentis d’Auteuil',category:'insolite',emoji:'♻️',distance:'Proche',description:'Un lieu solidaire consacré au réemploi.'},
+  {id:3,name:'Piscine d’Auteuil',category:'sport',emoji:'🏊',distance:'Proche',description:'Une piscine discrète aux portes du bois.'},
+  {id:4,name:'Lacs et cascade du Bois de Boulogne',category:'nature',emoji:'🌊',distance:'Éloigné',description:'Une parenthèse verte et dépaysante.'},
+  {id:5,name:'Stade Roland-Garros',category:'sport',emoji:'🎾',distance:'Intermédiaire',description:'Le temple parisien de la terre battue.'},
+  {id:6,name:'Parc des Princes',category:'sport',emoji:'⚽',distance:'Intermédiaire',description:'L’un des stades les plus célèbres de France.'},
+  {id:7,name:'Stade Jean-Bouin',category:'sport',emoji:'🏉',distance:'Intermédiaire',description:'Une architecture sportive contemporaine.'},
+  {id:8,name:'Statue de Jean de La Fontaine',category:'patrimoine',emoji:'🦊',distance:'Intermédiaire',description:'Le fabuliste veille sur le jardin du Ranelagh.'},
+  {id:9,name:'Franprix',category:'pratique',emoji:'🛒',distance:'Proche',description:'Un repère utile pour la vie quotidienne.'},
+  {id:10,name:'Pharmacie Lafayette',category:'pratique',emoji:'💊',distance:'Proche',description:'Un service essentiel à localiser.'},
+  {id:11,name:'Maison de Balzac',category:'culture',emoji:'📚',distance:'Intermédiaire',description:'La seule demeure parisienne conservée de Balzac.'},
+  {id:12,name:'Rue Mallet-Stevens',category:'insolite',emoji:'🏛️',distance:'Intermédiaire',description:'Une rue manifeste de l’architecture moderne.'},
+  {id:13,name:'Hippodrome d’Auteuil',category:'sport',emoji:'🏇',distance:'Éloigné',description:'Le grand rendez-vous parisien des courses d’obstacles.'},
+  {id:14,name:'Métro Ranelagh',category:'pratique',emoji:'Ⓜ️',distance:'Intermédiaire',description:'Une station utile pour les futurs déplacements.'},
+  {id:15,name:'Musée Marmottan Monet',category:'culture',emoji:'🎨',distance:'Intermédiaire',description:'Une remarquable collection consacrée à Monet.'},
+  {id:16,name:'Jardin des Serres d’Auteuil',category:'nature',emoji:'🌿',distance:'Intermédiaire',description:'Serres historiques, plantes rares et jardins paisibles.'},
+  {id:17,name:'Cross-training — Square Tolstoï',category:'sport',emoji:'🏋️',distance:'Proche',description:'Un espace gratuit pour bouger en plein air.'},
+  {id:18,name:'Hôtel et piscine Molitor',category:'insolite',emoji:'🏊‍♀️',distance:'Intermédiaire',description:'Une icône Art déco devenue lieu contemporain.'}
+]);

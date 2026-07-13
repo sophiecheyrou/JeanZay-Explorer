@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#12233f">
+  <meta name="description" content="Jean Zay Explorer — Mission XVI">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="assets/icon-512.png">
+  <link rel="stylesheet" href="styles.css">
+  <title>Jean Zay Explorer — Module 1</title>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="app-header">
+      <a class="brand" href="#accueil" aria-label="Retour à l’accueil">
+        <img src="assets/icon-192.png" alt="">
+        <span><strong>Jean Zay Explorer</strong><small>Mission XVI · Module 1</small></span>
+      </a>
+      <button class="install-button" id="installButton" hidden>Installer</button>
+    </header>
+
+    <main id="mainContent">
+      <section class="screen is-active" id="accueil" data-title="Accueil">
+        <div class="hero-card">
+          <p class="kicker">LUNDI 31 AOÛT 2026</p>
+          <h1>Deux heures pour découvrir votre nouveau quartier.</h1>
+          <p>Rendez-vous à 9 h au Grand Salon. Retour impératif au même endroit à 11 h.</p>
+          <div class="countdown" aria-live="polite">
+            <span id="countdownLabel">Temps avant le rendez-vous</span>
+            <strong id="countdownValue">--:--:--</strong>
+          </div>
+        </div>
+
+        <div class="status-strip">
+          <span><b id="homeTeamName">Aucune équipe</b><small>Équipe</small></span>
+          <span><b id="homeMode">—</b><small>Mode</small></span>
+          <span><b>18</b><small>Lieux</small></span>
+        </div>
+
+        <article class="card" id="welcomeCard">
+          <div class="card-icon">🧭</div>
+          <div><p class="kicker dark">BIENVENUE</p><h2>Préparez votre équipe</h2><p>Un seul téléphone suffit par équipe. Votre nom et votre mode sont conservés sur cet appareil.</p></div>
+          <button class="primary-button" data-open-team>Créer mon équipe</button>
+        </article>
+
+        <article class="card hidden" id="teamReadyCard">
+          <div class="card-row"><div><p class="kicker dark">ÉQUIPE PRÊTE</p><h2 id="readyTeamName"></h2><p id="readyTeamMeta"></p></div><button class="icon-button" data-open-team aria-label="Modifier l’équipe">✎</button></div>
+          <div class="button-grid"><a class="primary-button" href="#explorer">Commencer à explorer</a><a class="secondary-button" href="#equipe">Voir mon équipe</a></div>
+        </article>
+
+        <article class="card compact-card">
+          <div><p class="kicker dark">MODULE 1</p><h3>Une base fiable avant les fonctions avancées</h3><p>Navigation, design, équipe, carte, missions, classement connecté et PWA installable sont opérationnels. L’appareil photo et le GPS seront ajoutés dans les modules suivants.</p></div>
+        </article>
+
+        <article class="card admin-callout">
+          <div><p class="kicker dark">ORGANISATION</p><h3>Espace organisateur</h3><p>Accès séparé et protégé par le code organisateur.</p></div>
+          <a class="secondary-button" href="admin.html">Ouvrir l’espace organisateur</a>
+        </article>
+      </section>
+
+      <section class="screen" id="explorer" data-title="Explorer">
+        <div class="screen-heading"><div><p class="kicker dark">CARTE & LIEUX</p><h1>Explorer le 16e</h1></div><span class="count-badge" id="placeCounter">18 lieux</span></div>
+        <div class="filter-row" id="filters" aria-label="Filtrer les lieux"></div>
+        <article class="card map-card">
+          <iframe title="Carte des lieux" id="mapFrame" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </article>
+        <div class="places-grid" id="placesGrid"></div>
+      </section>
+
+      <section class="screen" id="equipe" data-title="Équipe">
+        <div class="screen-heading"><div><p class="kicker dark">MON ÉQUIPE</p><h1>Tableau de bord</h1></div><button class="icon-button" data-open-team aria-label="Modifier l’équipe">✎</button></div>
+        <div class="empty-state" id="teamEmptyState"><span>👥</span><h2>Aucune équipe enregistrée</h2><p>Créez votre équipe depuis cet écran ou depuis l’accueil.</p><button class="primary-button" data-open-team>Créer mon équipe</button></div>
+        <div class="hidden" id="teamPanel">
+          <article class="card team-card"><p class="kicker dark">IDENTITÉ</p><h2 id="teamPanelName"></h2><p id="teamPanelMeta"></p></article>
+          <div class="metric-grid"><article><b>0</b><small>Lieux validés</small></article><article><b>0,00 km</b><small>Distance</small></article><article><b>0</b><small>Photos</small></article></div>
+          <article class="card"><p class="kicker dark">PROCHAINS MODULES</p><h3>Suivi de mission</h3><ul class="feature-list"><li>Module 2 : carte Leaflet et distance GPS</li><li>Module 3 : missions et progression</li><li>Module 4 : photos vers Google Drive</li></ul></article>
+        </div>
+      </section>
+
+      <section class="screen" id="classement" data-title="Classement">
+        <div class="screen-heading"><div><p class="kicker dark">EN DIRECT</p><h1>Classement provisoire</h1></div><button class="icon-button" id="refreshRanking" aria-label="Actualiser">↻</button></div>
+        <article class="card info-card"><p>Les résultats proviennent de votre Google Apps Script. Tant qu’aucune photo n’est validée, le classement peut rester vide.</p></article>
+        <article class="card"><div class="ranking-status" id="rankingStatus">Chargement…</div><div id="rankingList"></div></article>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Navigation principale">
+      <a href="#accueil" data-route="accueil"><span>⌂</span>Accueil</a>
+      <a href="#explorer" data-route="explorer"><span>⌖</span>Explorer</a>
+      <a href="#equipe" data-route="equipe"><span>👥</span>Équipe</a>
+      <a href="#classement" data-route="classement"><span>🏆</span>Classement</a>
+    </nav>
+  </div>
+
+  <div class="modal" id="teamModal" aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal></div>
+    <section class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="teamModalTitle">
+      <button class="modal-close" data-close-modal aria-label="Fermer">×</button>
+      <p class="kicker dark">CONFIGURATION</p><h2 id="teamModalTitle">Votre équipe</h2>
+      <label>Nom de l’équipe<input id="teamNameInput" maxlength="32" placeholder="Les Zayventuriers"></label>
+      <label>Code d’équipe<input id="teamCodeInput" maxlength="12" placeholder="ZAY-08"></label>
+      <fieldset><legend>Choisissez votre rythme</legend><div class="mode-grid"><button type="button" data-mode="touriste">🚶<strong>Touriste</strong><small>Découvrir tranquillement</small></button><button type="button" data-mode="sportif">🏃<strong>Sportif</strong><small>Voir un maximum de lieux</small></button></div></fieldset>
+      <p class="form-message" id="teamFormMessage"></p>
+      <button class="primary-button" id="saveTeamButton">Enregistrer</button>
+    </section>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="config.js"></script><script src="places.js"></script><script src="app.js"></script>
+</body>
+</html>

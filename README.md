@@ -27,3 +27,7 @@ Code : `1600`
 
 ## RGPD
 Les photos ne sont jamais affichées dans l'application élève, le classement ou le tableau de pilotage. Le poste de pilotage fournit uniquement un lien vers le fichier privé Drive pour un contrôle ciblé. Aucun service d'IA externe n'est appelé.
+
+
+## Correctif 2.1
+Correction de la connexion Safari au backend Apps Script dans app.js et admin.js.

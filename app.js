@@ -8,7 +8,7 @@
   function save(k,v){localStorage.setItem(k,JSON.stringify(v))}
   function esc(v){return String(v).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
   function toast(m){const e=$('#toast');e.textContent=m;e.classList.add('is-visible');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('is-visible'),2600)}
-  function route(){const raw=location.hash.slice(1).toLowerCase(),cur=routes.includes(raw)?raw:'accueil';$$('.screen').forEach(x=>x.classList.toggle('is-active',x.id===cur));$$('.bottom-nav a').forEach(x=>x.classList.toggle('is-active',x.dataset.route===cur));document.title=`${C.appName} — ${$(`#${cur}`).dataset.title}`;scrollTo({top:0,behavior:'instant'});if(cur==='classement')loadRanking()}
+  function route(){const raw=location.hash.slice(1).toLowerCase(),cur=routes.includes(raw)?raw:'accueil';$$('.screen').forEach(x=>x.classList.toggle('is-active',x.id===cur));$$('.bottom-nav a').forEach(x=>x.classList.toggle('is-active',x.dataset.route===cur));document.title=`${C.appName} — ${$(`#${cur}`).dataset.title}`;scrollTo({top:0,behavior:'instant'});document.dispatchEvent(new CustomEvent('jze:screen-change',{detail:cur}));if(cur==='classement')loadRanking()}
   function saveTeam(t){state.team=t;save('jze_team',t);renderTeam()}
   function saveProofs(){save('jze_proofs',state.proofs);renderTeam();renderPlaces()}
   function teamProofs(){return state.team?state.proofs.filter(p=>p.teamCode===state.team.code):[]}

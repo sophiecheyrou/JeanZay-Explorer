@@ -7,7 +7,6 @@
   <meta name="description" content="Jean Zay Explorer — Mission XVI">
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="assets/icon-512.png">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIINfQ3ynh0xc4s8eP6wH4g0f9Fj7V6g2Wc=" crossorigin="">
   <link rel="stylesheet" href="styles.css">
   <title>Jean Zay Explorer</title>
 </head>
@@ -88,7 +87,16 @@
         <div class="screen-heading"><div><p class="kicker dark">CARTE & LIEUX</p><h1>Explorer le 16e</h1></div><span class="count-badge" id="placeCounter">18 lieux</span></div>
         <div class="filter-row" id="filters" aria-label="Filtrer les lieux"></div>
         <article class="card map-card">
-          <div id="placesMap" class="places-map" role="application" aria-label="Carte interactive des lieux"></div>
+          <div class="google-map-wrap">
+            <iframe
+              class="google-map-frame"
+              src="https://www.google.com/maps/d/embed?mid=1vlNQYWHdgVHWTnkunxycut_ygynVxM8&ehbc=2E312F"
+              title="Carte des lieux à découvrir dans le 16e arrondissement"
+              loading="eager"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen></iframe>
+          </div>
+          <a class="map-external-link" href="https://www.google.com/maps/d/viewer?mid=1vlNQYWHdgVHWTnkunxycut_ygynVxM8" target="_blank" rel="noopener">Ouvrir la carte en plein écran ↗</a>
         </article>
         <div class="places-grid" id="placesGrid"></div>
       </section>

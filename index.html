@@ -8,14 +8,14 @@
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="assets/icon-512.png">
   <link rel="stylesheet" href="styles.css">
-  <title>Jean Zay Explorer — Module 1</title>
+  <title>Jean Zay Explorer — Module 1.1</title>
 </head>
 <body>
   <div class="app-shell">
     <header class="app-header">
       <a class="brand" href="#accueil" aria-label="Retour à l’accueil">
         <img src="assets/icon-192.png" alt="">
-        <span><strong>Jean Zay Explorer</strong><small>Mission XVI · Module 1</small></span>
+        <span><strong>Jean Zay Explorer</strong><small>Mission XVI · Module 1.1</small></span>
       </a>
       <button class="install-button" id="installButton" hidden>Installer</button>
     </header>
@@ -50,7 +50,7 @@
         </article>
 
         <article class="card compact-card">
-          <div><p class="kicker dark">MODULE 1</p><h3>Une base fiable avant les fonctions avancées</h3><p>Navigation, design, équipe, carte, missions, classement connecté et PWA installable sont opérationnels. L’appareil photo et le GPS seront ajoutés dans les modules suivants.</p></div>
+          <div><p class="kicker dark">MODULE 1</p><h3>Une base fiable avant les fonctions avancées</h3><p>Navigation, équipe, missions et dépôt de photos vers Google Drive sont opérationnels. Le GPS sera ajouté au module suivant.</p></div>
         </article>
 
         <article class="card admin-callout">
@@ -73,8 +73,8 @@
         <div class="empty-state" id="teamEmptyState"><span>👥</span><h2>Aucune équipe enregistrée</h2><p>Créez votre équipe depuis cet écran ou depuis l’accueil.</p><button class="primary-button" data-open-team>Créer mon équipe</button></div>
         <div class="hidden" id="teamPanel">
           <article class="card team-card"><p class="kicker dark">IDENTITÉ</p><h2 id="teamPanelName"></h2><p id="teamPanelMeta"></p></article>
-          <div class="metric-grid"><article><b>0</b><small>Lieux validés</small></article><article><b>0,00 km</b><small>Distance</small></article><article><b>0</b><small>Photos</small></article></div>
-          <article class="card"><p class="kicker dark">PROCHAINS MODULES</p><h3>Suivi de mission</h3><ul class="feature-list"><li>Module 2 : carte Leaflet et distance GPS</li><li>Module 3 : missions et progression</li><li>Module 4 : photos vers Google Drive</li></ul></article>
+          <div class="metric-grid"><article><b id="teamPlacesCount">0</b><small>Photos envoyées</small></article><article><b>0,00 km</b><small>Distance</small></article><article><b id="teamPendingCount">0</b><small>En attente</small></article></div>
+          <article class="card"><p class="kicker dark">PROCHAINS MODULES</p><h3>Suivi de mission</h3><ul class="feature-list"><li>Module 2 : carte Leaflet et distance GPS</li><li>Module 1.1 : missions et photos vers Google Drive</li><li>Module 2 : carte Leaflet et distance GPS</li></ul></article>
         </div>
       </section>
 
@@ -103,6 +103,21 @@
       <fieldset><legend>Choisissez votre rythme</legend><div class="mode-grid"><button type="button" data-mode="touriste">🚶<strong>Touriste</strong><small>Découvrir tranquillement</small></button><button type="button" data-mode="sportif">🏃<strong>Sportif</strong><small>Voir un maximum de lieux</small></button></div></fieldset>
       <p class="form-message" id="teamFormMessage"></p>
       <button class="primary-button" id="saveTeamButton">Enregistrer</button>
+    </section>
+  </div>
+
+  <div class="modal" id="missionModal" aria-hidden="true">
+    <div class="modal-backdrop" data-close-mission></div>
+    <section class="modal-panel mission-panel" role="dialog" aria-modal="true" aria-labelledby="missionTitle">
+      <button class="modal-close" data-close-mission aria-label="Fermer">×</button>
+      <div class="mission-heading"><span class="mission-emoji" id="missionEmoji">📍</span><div><p class="kicker dark">MISSION PHOTO</p><h2 id="missionTitle"></h2></div></div>
+      <p id="missionDescription"></p>
+      <div class="mission-instruction"><strong>Votre défi</strong><p id="missionInstruction"></p></div>
+      <div id="missionTeamWarning" class="warning-box hidden">Créez d’abord votre équipe pour pouvoir envoyer une preuve.</div>
+      <label class="photo-picker" id="photoPickerLabel">📷 Prendre ou choisir une photo<input id="missionPhotoInput" type="file" accept="image/*" capture="environment"></label>
+      <div class="photo-preview hidden" id="photoPreviewWrap"><img id="photoPreview" alt="Aperçu de la photo sélectionnée"><button type="button" class="secondary-button small-button" id="changePhotoButton">Changer la photo</button></div>
+      <p class="upload-status" id="uploadStatus" aria-live="polite"></p>
+      <button class="primary-button" id="sendProofButton" disabled>Envoyer la preuve</button>
     </section>
   </div>
 

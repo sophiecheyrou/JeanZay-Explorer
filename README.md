@@ -1,26 +1,29 @@
-# Jean Zay Explorer — Module 1.2
+# Jean Zay Explorer — Module 2
 
-Correctifs et améliorations :
+## Fonctions
+- Accueil élèves avec règles complètes.
+- Barème automatique : proche 10 pts, intermédiaire 20 pts, éloigné 30 pts.
+- Série Sportifs : classement automatique par points.
+- Série Touristes : éligibilité au tirage au sort après retour et au moins 3 lieux validés.
+- Validation automatique à l'envoi d'une photo.
+- Contrôle ciblé dans `admin.html`, sans miniature ni galerie publique.
+- Photos conservées uniquement dans le dossier Google Drive privé.
+- Signalement du retour au Grand Salon.
 
-- accueil entièrement recentré sur les élèves ;
-- suppression du compte à rebours de l’accueil ;
-- suppression des encadrés redondants équipe/mode/lieux ;
-- suppression de l’accès organisateur dans l’application élèves ;
-- accès organisateur conservé uniquement via `admin.html` ;
-- deux choix distincts pour la photo : appareil photo ou photothèque ;
-- état « Photo envoyée » mémorisé séparément pour chaque lieu ;
-- réinitialisation correcte du bouton d’envoi à chaque nouvelle mission.
+## Étape indispensable : mettre à jour Apps Script
+1. Ouvrir le projet Apps Script déjà créé.
+2. Remplacer le contenu de `Code.gs` par celui fourni dans ce dossier.
+3. Renseigner vos valeurs `SHEET_ID` et `DRIVE_FOLDER_ID` en haut du fichier.
+4. Exécuter `setup()` une fois.
+5. Déployer > Gérer les déploiements > Modifier > Nouvelle version > Déployer.
+6. Conserver la même URL `/exec` déjà intégrée dans `config.js`.
 
-## Mise en ligne
+## GitHub
+Remplacer tous les fichiers du dépôt de test par ceux du dossier, sauf `Code.gs` qui va uniquement dans Apps Script.
 
-Remplacer tous les fichiers de la version précédente par ceux de ce dossier, en conservant le dossier `assets`.
+## Poste de pilotage
+Adresse : `.../admin.html`
+Code : `1600`
 
-Après le commit GitHub, fermer complètement la PWA et la rouvrir. En cas d’ancien affichage, vider les données du site ou tester en navigation privée.
-
-## Espace organisateur
-
-L’espace organisateur n’est pas visible dans l’application élèves. Il reste accessible directement à l’adresse :
-
-`https://sophiecheyrou.github.io/16e/admin.html`
-
-Code actuel : `1600`.
+## RGPD
+Les photos ne sont jamais affichées dans l'application élève, le classement ou le tableau de pilotage. Le poste de pilotage fournit uniquement un lien vers le fichier privé Drive pour un contrôle ciblé. Aucun service d'IA externe n'est appelé.

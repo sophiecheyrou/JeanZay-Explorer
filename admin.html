@@ -2,22 +2,27 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#12233f"><link rel="manifest" href="manifest.json"><link rel="apple-touch-icon" href="assets/icon-512.png"><link rel="stylesheet" href="styles.css">
-  <title>Jean Zay Explorer — Organisateur</title>
+  <meta name="theme-color" content="#12233f"><link rel="apple-touch-icon" href="assets/icon-512.png"><link rel="stylesheet" href="styles.css">
+  <title>Jean Zay Explorer — Pilotage</title>
 </head>
 <body class="admin-page">
-  <header class="app-header"><a class="brand" href="index.html#accueil"><img src="assets/icon-192.png" alt=""><span><strong>Jean Zay Explorer</strong><small>Espace organisateur · Module 1</small></span></a><a class="secondary-button small-button" href="index.html#accueil">Retour</a></header>
+  <header class="app-header"><a class="brand" href="index.html#accueil"><img src="assets/icon-192.png" alt=""><span><strong>Jean Zay Explorer</strong><small>Poste de pilotage</small></span></a><button class="secondary-button small-button hidden" id="adminLogoutButton">Déconnexion</button></header>
   <main class="admin-main">
     <section class="admin-login card" id="adminLogin">
-      <p class="kicker dark">ACCÈS PROTÉGÉ</p><h1>Espace organisateur</h1><p>Le code est utilisé ici, uniquement pour ouvrir le tableau de pilotage.</p>
+      <p class="kicker dark">ACCÈS RÉSERVÉ</p><h1>Poste de pilotage</h1><p>Saisissez le code organisateur. Cet écran n’est pas accessible depuis l’application des élèves.</p>
       <label>Code organisateur<input id="adminCodeInput" type="password" inputmode="numeric" autocomplete="current-password" placeholder="••••"></label>
-      <p class="form-message" id="adminLoginMessage"></p><button class="primary-button" id="adminLoginButton">Ouvrir le tableau de bord</button>
+      <p class="form-message" id="adminLoginMessage"></p><button class="primary-button" id="adminLoginButton">Ouvrir</button>
     </section>
     <section class="hidden" id="adminDashboard">
-      <div class="screen-heading"><div><p class="kicker dark">PILOTAGE</p><h1>Tableau de bord</h1></div><button class="secondary-button small-button" id="adminLogoutButton">Déconnexion</button></div>
-      <div class="metric-grid admin-metrics"><article><b id="adminTeams">—</b><small>Équipes</small></article><article><b id="adminProofs">—</b><small>Preuves</small></article><article><b id="adminReturns">—</b><small>Retours</small></article></div>
-      <article class="card"><div class="card-row"><div><p class="kicker dark">CONNEXION</p><h2>Google Apps Script</h2></div><button class="icon-button" id="adminRefreshButton">↻</button></div><p id="adminApiStatus">Vérification…</p></article>
-      <article class="card"><p class="kicker dark">MODULE 1</p><h2>Fondations terminées</h2><p>Ce tableau confirme la connexion au backend. La validation détaillée des photos sera ajoutée dans le module Administration.</p><div id="adminSummary"></div></article>
+      <div class="screen-heading"><div><p class="kicker dark">EN DIRECT</p><h1>Poste de pilotage</h1></div><button class="icon-button" id="adminRefreshButton" aria-label="Actualiser">↻</button></div>
+      <div class="metric-grid admin-metrics"><article><b id="adminTeams">—</b><small>Équipes</small></article><article><b id="adminProofs">—</b><small>Étapes validées</small></article><article><b id="adminReturns">—</b><small>Retours</small></article><article><b id="adminTourists">—</b><small>Touristes éligibles</small></article></div>
+      <article class="card admin-alert" id="adminApiStatus">Connexion au backend…</article>
+      <div class="admin-columns">
+        <article class="card"><div class="card-row"><div><p class="kicker dark">SÉRIE SPORTIFS</p><h2>Classement automatique</h2></div><span class="count-badge">Points</span></div><div id="sportRanking"></div></article>
+        <article class="card"><div class="card-row"><div><p class="kicker dark">SÉRIE TOURISTES</p><h2>Tirage au sort</h2></div><span class="count-badge" id="touristEligibleCount">0 éligible</span></div><p>Équipes revenues avant 11 h avec au moins 3 lieux validés.</p><button class="primary-button" id="drawTouristButton">Effectuer le tirage au sort</button><div class="draw-result" id="drawResult"></div></article>
+      </div>
+      <article class="card"><div class="card-row"><div><p class="kicker dark">CONTRÔLE CIBLÉ</p><h2>Preuves des équipes en tête</h2></div><select id="proofFilter"><option value="top">Top sportifs</option><option value="all">Toutes les équipes</option><option value="rejected">Invalidées</option></select></div><p class="muted">Les photos ne sont jamais affichées ici. Le bouton ouvre le fichier privé dans Google Drive uniquement lorsque vous souhaitez contrôler une preuve.</p><div class="proof-table-wrap"><table class="proof-table"><thead><tr><th>Équipe</th><th>Lieu</th><th>Points</th><th>Statut</th><th>Contrôle</th></tr></thead><tbody id="proofTableBody"></tbody></table></div></article>
+      <article class="card"><p class="kicker dark">ÉQUIPES</p><h2>Suivi des retours</h2><div id="teamTable"></div></article>
     </section>
   </main>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>

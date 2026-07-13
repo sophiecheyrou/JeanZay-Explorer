@@ -28,11 +28,11 @@
           <div class="hero-content">
             <p class="kicker">MISSION XVI · LUNDI 31 AOÛT 2026</p>
             <h1>À vous de jouer : partez à la découverte du 16e&nbsp;!</h1>
-            <p class="hero-lead">En équipe, explorez les lieux emblématiques, utiles ou insolites du quartier. Courez pour relever un maximum de défis ou prenez le temps de regarder Paris autrement.</p>
+            <p class="hero-lead">En équipe, choisissez votre série, partez à la découverte du quartier et envoyez une photo à chaque étape. Retour obligatoire au Grand Salon avant 11 h.</p>
             <div class="event-pill-row">
               <span>📍 Départ : Grand Salon</span>
               <span>🕘 9 h – 11 h</span>
-              <span>📷 Une photo par lieu</span>
+              <span>📷 Une photo par lieu</span><span>🏁 Retour avant 11 h</span>
             </div>
             <div class="hero-actions" id="welcomeCard">
               <button class="primary-button hero-primary" data-open-team>Créer mon équipe</button>
@@ -50,27 +50,27 @@
           <article class="play-card">
             <span class="play-icon">🏃</span>
             <p class="kicker dark">MODE SPORTIF</p>
-            <h2>Voir le plus de lieux possible</h2>
-            <p>Construisez votre parcours, gardez le rythme et tentez de battre les autres équipes avant le retour à 11 h.</p>
+            <h2>Marquez le plus de points</h2>
+            <p>Les lieux proches valent 10 points, les lieux intermédiaires 20 points et les plus éloignés 30 points. L’équipe ayant le plus de points gagne.</p>
           </article>
           <article class="play-card">
             <span class="play-icon">🚶</span>
             <p class="kicker dark">MODE TOURISTE</p>
-            <h2>Explorer à votre rythme</h2>
-            <p>Choisissez vos lieux préférés, observez le quartier et profitez de cette première promenade autour de Jean Zay.</p>
+            <h2>Découvrez au moins 3 lieux</h2>
+            <p>Explorez tranquillement le quartier. Toutes les équipes revenues avant 11 h avec au moins 3 lieux validés participent au tirage au sort.</p>
           </article>
         </div>
 
         <article class="adventure-card">
           <div>
             <p class="kicker dark">LE PRINCIPE</p>
-            <h2>Une mission, une photo, un lieu découvert</h2>
-            <p>Ouvrez une mission dans l’onglet Explorer, rendez-vous sur place et envoyez une photo justificative. Chaque découverte compte pour votre équipe.</p>
+            <h2>Les règles en 4 étapes</h2>
+            <p>1. Créez votre équipe et choisissez Sportif ou Touriste. 2. Ouvrez une mission. 3. Prenez une photo sur place et envoyez-la. 4. Revenez au Grand Salon avant 11 h et signalez votre retour.</p>
           </div>
           <div class="adventure-steps" aria-label="Déroulement du jeu">
             <span><b>1</b> Choisir</span>
             <span><b>2</b> Explorer</span>
-            <span><b>3</b> Photographier</span>
+            <span><b>3</b> Photographier</span><span><b>4</b> Revenir</span>
           </div>
         </article>
 
@@ -78,7 +78,7 @@
           <span class="reward-icon">🎁</span>
           <div>
             <p class="kicker">DEUX CHANCES DE GAGNER</p>
-            <h2>Récompense aux meilleurs explorateurs… et tirage au sort parmi les équipes participantes.</h2>
+            <h2>Prix au meilleur score de la série Sportifs et tirage au sort parmi les équipes Touristes éligibles.</h2>
           </div>
         </article>
       </section>
@@ -97,14 +97,14 @@
         <div class="empty-state" id="teamEmptyState"><span>👥</span><h2>Aucune équipe enregistrée</h2><p>Créez votre équipe depuis cet écran ou depuis l’accueil.</p><button class="primary-button" data-open-team>Créer mon équipe</button></div>
         <div class="hidden" id="teamPanel">
           <article class="card team-card"><p class="kicker dark">IDENTITÉ</p><h2 id="teamPanelName"></h2><p id="teamPanelMeta"></p></article>
-          <div class="metric-grid"><article><b id="teamPlacesCount">0</b><small>Photos envoyées</small></article><article><b>0,00 km</b><small>Distance</small></article><article><b id="teamPendingCount">0</b><small>En attente</small></article></div>
-          <article class="card"><p class="kicker dark">PROCHAINS MODULES</p><h3>Suivi de mission</h3><ul class="feature-list"><li>Module 2 : carte Leaflet et distance GPS</li><li>Module 1.1 : missions et photos vers Google Drive</li><li>Module 2 : carte Leaflet et distance GPS</li></ul></article>
+          <div class="metric-grid"><article><b id="teamPlacesCount">0</b><small>Lieux validés</small></article><article><b id="teamPointsCount">0</b><small>Points</small></article><article><b id="teamReturnStatus">Non</b><small>Retour signalé</small></article></div><article class="card return-card"><p class="kicker dark">FIN DE PARCOURS</p><h3>De retour au Grand Salon ?</h3><p>Appuyez sur ce bouton uniquement lorsque toute l’équipe est revenue avant 11 h.</p><button class="primary-button" id="markReturnButton">Signaler notre retour</button><p class="form-message" id="returnMessage"></p></article>
+          <article class="card"><p class="kicker dark">BARÈME</p><h3>Les lieux éloignés rapportent davantage</h3><ul class="feature-list"><li>Lieu proche : 10 points</li><li>Lieu intermédiaire : 20 points</li><li>Lieu éloigné : 30 points</li></ul></article>
         </div>
       </section>
 
       <section class="screen" id="classement" data-title="Classement">
-        <div class="screen-heading"><div><p class="kicker dark">EN DIRECT</p><h1>Classement provisoire</h1></div><button class="icon-button" id="refreshRanking" aria-label="Actualiser">↻</button></div>
-        <article class="card info-card"><p>Les résultats proviennent de votre Google Apps Script. Tant qu’aucune photo n’est validée, le classement peut rester vide.</p></article>
+        <div class="screen-heading"><div><p class="kicker dark">SÉRIE SPORTIFS</p><h1>Classement en direct</h1></div><button class="icon-button" id="refreshRanking" aria-label="Actualiser">↻</button></div>
+        <article class="card info-card"><p>Seules les équipes inscrites en mode Sportif figurent dans ce classement. Les points sont calculés automatiquement selon l’éloignement des lieux.</p></article>
         <article class="card"><div class="ranking-status" id="rankingStatus">Chargement…</div><div id="rankingList"></div></article>
       </section>
     </main>
@@ -136,7 +136,7 @@
       <button class="modal-close" data-close-mission aria-label="Fermer">×</button>
       <div class="mission-heading"><span class="mission-emoji" id="missionEmoji">📍</span><div><p class="kicker dark">MISSION PHOTO</p><h2 id="missionTitle"></h2></div></div>
       <p id="missionDescription"></p>
-      <div class="mission-instruction"><strong>Votre défi</strong><p id="missionInstruction"></p></div>
+      <div class="mission-instruction"><strong>Votre défi</strong><p id="missionInstruction"></p><p class="mission-points" id="missionPoints"></p></div>
       <div id="missionTeamWarning" class="warning-box hidden">Créez d’abord votre équipe pour pouvoir envoyer une preuve.</div>
       <div class="photo-source-grid" id="photoSourceGrid">
         <button type="button" class="photo-source-button" id="takePhotoButton"><span>📷</span><strong>Prendre une photo</strong><small>Ouvrir l’appareil photo</small></button>

@@ -1,23 +1,26 @@
-# Jean Zay Explorer — Module 1.1 correctif
+# Jean Zay Explorer — Module 1.2
 
-Cette version corrige le Module 1 :
-- chaque lieu est cliquable ;
-- une mission s'ouvre dans une fenêtre ;
-- prise ou sélection d'une photo sur smartphone ;
-- compression de la photo dans le navigateur ;
-- envoi vers le Google Apps Script déjà configuré ;
-- stockage de la photo dans Google Drive ;
-- création d'une ligne dans l'onglet `Preuves` du Google Sheet ;
-- progression locale et classement partagé.
+Correctifs et améliorations :
 
-## Installation
-Remplacer tous les fichiers du Module 1 par ceux de ce dossier, puis valider le commit GitHub.
-Le cache PWA a été renommé. Sur un téléphone où l'ancienne version persiste, fermer complètement la PWA puis la rouvrir, ou supprimer les données du site.
+- accueil entièrement recentré sur les élèves ;
+- suppression du compte à rebours de l’accueil ;
+- suppression des encadrés redondants équipe/mode/lieux ;
+- suppression de l’accès organisateur dans l’application élèves ;
+- accès organisateur conservé uniquement via `admin.html` ;
+- deux choix distincts pour la photo : appareil photo ou photothèque ;
+- état « Photo envoyée » mémorisé séparément pour chaque lieu ;
+- réinitialisation correcte du bouton d’envoi à chaque nouvelle mission.
 
-## Test conseillé
-1. Créer une équipe.
-2. Ouvrir l'onglet Explorer.
-3. Toucher un lieu.
-4. Prendre une petite photo.
-5. Cliquer sur Envoyer la preuve.
-6. Vérifier le dossier Drive et l'onglet `Preuves` du Google Sheet.
+## Mise en ligne
+
+Remplacer tous les fichiers de la version précédente par ceux de ce dossier, en conservant le dossier `assets`.
+
+Après le commit GitHub, fermer complètement la PWA et la rouvrir. En cas d’ancien affichage, vider les données du site ou tester en navigation privée.
+
+## Espace organisateur
+
+L’espace organisateur n’est pas visible dans l’application élèves. Il reste accessible directement à l’adresse :
+
+`https://sophiecheyrou.github.io/16e/admin.html`
+
+Code actuel : `1600`.

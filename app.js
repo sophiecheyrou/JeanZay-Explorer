@@ -33,24 +33,15 @@
     if(current==='classement') loadRanking();
   }
 
-  function countdown(){
-    const now=Date.now(), start=new Date(C.startAt).getTime(), end=new Date(C.endAt).getTime();
-    let target=start,label='Temps avant le rendez-vous';
-    if(now>=start && now<end){target=end;label='Temps restant';}
-    if(now>=end){$('#countdownLabel').textContent='Mission terminée';$('#countdownValue').textContent='00:00:00';return;}
-    const sec=Math.max(0,Math.floor((target-now)/1000));
-    const h=String(Math.floor(sec/3600)).padStart(2,'0'),m=String(Math.floor((sec%3600)/60)).padStart(2,'0'),s=String(sec%60).padStart(2,'0');
-    $('#countdownLabel').textContent=label;$('#countdownValue').textContent=`${h}:${m}:${s}`;
-  }
-
   function renderTeam(){
     const t=state.team, has=Boolean(t);
-    $('#welcomeCard').classList.toggle('hidden',has);$('#teamReadyCard').classList.toggle('hidden',!has);
-    $('#teamEmptyState').classList.toggle('hidden',has);$('#teamPanel').classList.toggle('hidden',!has);
-    $('#homeTeamName').textContent=has?t.name:'Aucune équipe';$('#homeMode').textContent=has?(t.mode==='sportif'?'Sportif':'Touriste'):'—';
+    $('#welcomeCard')?.classList.toggle('hidden',has);
+    $('#teamReadyCard')?.classList.toggle('hidden',!has);
+    $('#teamEmptyState').classList.toggle('hidden',has);
+    $('#teamPanel').classList.toggle('hidden',!has);
     if(has){
-      $('#readyTeamName').textContent=t.name;$('#readyTeamMeta').textContent=`Code ${t.code} · Mode ${t.mode}`;
-      $('#teamPanelName').textContent=t.name;$('#teamPanelMeta').textContent=`Code d’équipe : ${t.code} · Mode : ${t.mode}`;
+      $('#teamPanelName').textContent=t.name;
+      $('#teamPanelMeta').textContent=`Code d’équipe : ${t.code} · Mode : ${t.mode}`;
     }
     renderTeamMetrics();
   }
@@ -114,11 +105,13 @@
 
   function resetMissionPhoto(){
     state.photoData=null; state.photoMime='image/jpeg';
-    $('#missionPhotoInput').value='';
+    $('#missionCameraInput').value='';
+    $('#missionGalleryInput').value='';
     $('#photoPreview').removeAttribute('src');
     $('#photoPreviewWrap').classList.add('hidden');
-    $('#photoPickerLabel').classList.remove('hidden');
+    $('#photoSourceGrid').classList.remove('hidden');
     $('#sendProofButton').disabled=true;
+    $('#sendProofButton').textContent='Envoyer la preuve';
     $('#uploadStatus').textContent='';
   }
 
@@ -132,8 +125,10 @@
     $('#missionInstruction').textContent=place.mission || 'Prenez une photo de votre équipe sur place.';
     const noTeam=!state.team;
     $('#missionTeamWarning').classList.toggle('hidden',!noTeam);
-    $('#photoPickerLabel').classList.toggle('is-disabled',noTeam);
-    $('#missionPhotoInput').disabled=noTeam;
+    $('#takePhotoButton').disabled=noTeam;
+    $('#choosePhotoButton').disabled=noTeam;
+    $('#missionCameraInput').disabled=noTeam;
+    $('#missionGalleryInput').disabled=noTeam;
     $('#missionModal').classList.add('is-open');$('#missionModal').setAttribute('aria-hidden','false');
   }
   function closeMission(){ $('#missionModal').classList.remove('is-open');$('#missionModal').setAttribute('aria-hidden','true'); resetMissionPhoto(); }
@@ -153,7 +148,7 @@
     $('#uploadStatus').textContent='Préparation de la photo…'; $('#sendProofButton').disabled=true;
     try {
       state.photoData=await compressImage(file); state.photoMime='image/jpeg';
-      $('#photoPreview').src=state.photoData; $('#photoPreviewWrap').classList.remove('hidden'); $('#photoPickerLabel').classList.add('hidden');
+      $('#photoPreview').src=state.photoData; $('#photoPreviewWrap').classList.remove('hidden'); $('#photoSourceGrid').classList.add('hidden');
       $('#uploadStatus').textContent='Photo prête à être envoyée.'; $('#sendProofButton').disabled=false;
     } catch(err){ $('#uploadStatus').textContent=err.message; resetMissionPhoto(); }
   }
@@ -217,9 +212,15 @@
   });
   $('#saveTeamButton').addEventListener('click',submitTeam);
   $('#refreshRanking').addEventListener('click',loadRanking);
-  $('#missionPhotoInput').addEventListener('change',e=>handlePhoto(e.target.files?.[0]));
-  $('#changePhotoButton').addEventListener('click',()=>$('#missionPhotoInput').click());
+  $('#takePhotoButton').addEventListener('click',()=>$('#missionCameraInput').click());
+  $('#choosePhotoButton').addEventListener('click',()=>$('#missionGalleryInput').click());
+  $('#missionCameraInput').addEventListener('change',e=>handlePhoto(e.target.files?.[0]));
+  $('#missionGalleryInput').addEventListener('change',e=>handlePhoto(e.target.files?.[0]));
+  $('#changePhotoButton').addEventListener('click',()=>{
+    resetMissionPhoto();
+    $('#missionGalleryInput').click();
+  });
   $('#sendProofButton').addEventListener('click',sendProof);
   $('#mapFrame').src=C.mapUrl;
-  renderFilters();renderPlaces();renderTeam();route();countdown();setInterval(countdown,1000);setupInstall();registerSW();
+  renderFilters();renderPlaces();renderTeam();route();setupInstall();registerSW();
 })();

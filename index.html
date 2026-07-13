@@ -8,54 +8,78 @@
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="assets/icon-512.png">
   <link rel="stylesheet" href="styles.css">
-  <title>Jean Zay Explorer — Module 1.1</title>
+  <title>Jean Zay Explorer</title>
 </head>
 <body>
   <div class="app-shell">
     <header class="app-header">
       <a class="brand" href="#accueil" aria-label="Retour à l’accueil">
         <img src="assets/icon-192.png" alt="">
-        <span><strong>Jean Zay Explorer</strong><small>Mission XVI · Module 1.1</small></span>
+        <span><strong>Jean Zay Explorer</strong><small>Mission XVI · Rentrée 2026</small></span>
       </a>
       <button class="install-button" id="installButton" hidden>Installer</button>
     </header>
 
     <main id="mainContent">
       <section class="screen is-active" id="accueil" data-title="Accueil">
-        <div class="hero-card">
-          <p class="kicker">LUNDI 31 AOÛT 2026</p>
-          <h1>Deux heures pour découvrir votre nouveau quartier.</h1>
-          <p>Rendez-vous à 9 h au Grand Salon. Retour impératif au même endroit à 11 h.</p>
-          <div class="countdown" aria-live="polite">
-            <span id="countdownLabel">Temps avant le rendez-vous</span>
-            <strong id="countdownValue">--:--:--</strong>
+        <div class="student-hero">
+          <div class="hero-orbit hero-orbit-one"></div>
+          <div class="hero-orbit hero-orbit-two"></div>
+          <div class="hero-content">
+            <p class="kicker">MISSION XVI · LUNDI 31 AOÛT 2026</p>
+            <h1>À vous de jouer : partez à la découverte du 16e&nbsp;!</h1>
+            <p class="hero-lead">En équipe, explorez les lieux emblématiques, utiles ou insolites du quartier. Courez pour relever un maximum de défis ou prenez le temps de regarder Paris autrement.</p>
+            <div class="event-pill-row">
+              <span>📍 Départ : Grand Salon</span>
+              <span>🕘 9 h – 11 h</span>
+              <span>📷 Une photo par lieu</span>
+            </div>
+            <div class="hero-actions" id="welcomeCard">
+              <button class="primary-button hero-primary" data-open-team>Créer mon équipe</button>
+              <a class="ghost-button" href="#explorer">Découvrir les missions</a>
+            </div>
+            <div class="hero-actions hidden" id="teamReadyCard">
+              <a class="primary-button hero-primary" href="#explorer">Commencer l’aventure</a>
+              <button class="ghost-button" data-open-team>Modifier mon équipe</button>
+            </div>
           </div>
+          <div class="hero-compass" aria-hidden="true"><span>🧭</span></div>
         </div>
 
-        <div class="status-strip">
-          <span><b id="homeTeamName">Aucune équipe</b><small>Équipe</small></span>
-          <span><b id="homeMode">—</b><small>Mode</small></span>
-          <span><b>18</b><small>Lieux</small></span>
+        <div class="play-grid">
+          <article class="play-card">
+            <span class="play-icon">🏃</span>
+            <p class="kicker dark">MODE SPORTIF</p>
+            <h2>Voir le plus de lieux possible</h2>
+            <p>Construisez votre parcours, gardez le rythme et tentez de battre les autres équipes avant le retour à 11 h.</p>
+          </article>
+          <article class="play-card">
+            <span class="play-icon">🚶</span>
+            <p class="kicker dark">MODE TOURISTE</p>
+            <h2>Explorer à votre rythme</h2>
+            <p>Choisissez vos lieux préférés, observez le quartier et profitez de cette première promenade autour de Jean Zay.</p>
+          </article>
         </div>
 
-        <article class="card" id="welcomeCard">
-          <div class="card-icon">🧭</div>
-          <div><p class="kicker dark">BIENVENUE</p><h2>Préparez votre équipe</h2><p>Un seul téléphone suffit par équipe. Votre nom et votre mode sont conservés sur cet appareil.</p></div>
-          <button class="primary-button" data-open-team>Créer mon équipe</button>
+        <article class="adventure-card">
+          <div>
+            <p class="kicker dark">LE PRINCIPE</p>
+            <h2>Une mission, une photo, un lieu découvert</h2>
+            <p>Ouvrez une mission dans l’onglet Explorer, rendez-vous sur place et envoyez une photo justificative. Chaque découverte compte pour votre équipe.</p>
+          </div>
+          <div class="adventure-steps" aria-label="Déroulement du jeu">
+            <span><b>1</b> Choisir</span>
+            <span><b>2</b> Explorer</span>
+            <span><b>3</b> Photographier</span>
+          </div>
         </article>
 
-        <article class="card hidden" id="teamReadyCard">
-          <div class="card-row"><div><p class="kicker dark">ÉQUIPE PRÊTE</p><h2 id="readyTeamName"></h2><p id="readyTeamMeta"></p></div><button class="icon-button" data-open-team aria-label="Modifier l’équipe">✎</button></div>
-          <div class="button-grid"><a class="primary-button" href="#explorer">Commencer à explorer</a><a class="secondary-button" href="#equipe">Voir mon équipe</a></div>
-        </article>
-
-        <article class="card compact-card">
-          <div><p class="kicker dark">MODULE 1</p><h3>Une base fiable avant les fonctions avancées</h3><p>Navigation, équipe, missions et dépôt de photos vers Google Drive sont opérationnels. Le GPS sera ajouté au module suivant.</p></div>
-        </article>
-
-        <article class="card admin-callout">
-          <div><p class="kicker dark">ORGANISATION</p><h3>Espace organisateur</h3><p>Accès séparé et protégé par le code organisateur.</p></div>
-          <a class="secondary-button" href="admin.html">Ouvrir l’espace organisateur</a>
+        <article class="reward-banner">
+          <span class="reward-icon">🎁</span>
+          <div>
+            <p class="kicker">DEUX CHANCES DE GAGNER</p>
+            <h2>Récompense aux meilleurs explorateurs… et tirage au sort parmi les équipes participantes.</h2>
+          </div>
         </article>
       </section>
 
@@ -114,7 +138,12 @@
       <p id="missionDescription"></p>
       <div class="mission-instruction"><strong>Votre défi</strong><p id="missionInstruction"></p></div>
       <div id="missionTeamWarning" class="warning-box hidden">Créez d’abord votre équipe pour pouvoir envoyer une preuve.</div>
-      <label class="photo-picker" id="photoPickerLabel">📷 Prendre ou choisir une photo<input id="missionPhotoInput" type="file" accept="image/*" capture="environment"></label>
+      <div class="photo-source-grid" id="photoSourceGrid">
+        <button type="button" class="photo-source-button" id="takePhotoButton"><span>📷</span><strong>Prendre une photo</strong><small>Ouvrir l’appareil photo</small></button>
+        <button type="button" class="photo-source-button" id="choosePhotoButton"><span>🖼️</span><strong>Choisir une photo</strong><small>Depuis la photothèque</small></button>
+      </div>
+      <input class="visually-hidden" id="missionCameraInput" type="file" accept="image/*" capture="environment">
+      <input class="visually-hidden" id="missionGalleryInput" type="file" accept="image/*">
       <div class="photo-preview hidden" id="photoPreviewWrap"><img id="photoPreview" alt="Aperçu de la photo sélectionnée"><button type="button" class="secondary-button small-button" id="changePhotoButton">Changer la photo</button></div>
       <p class="upload-status" id="uploadStatus" aria-live="polite"></p>
       <button class="primary-button" id="sendProofButton" disabled>Envoyer la preuve</button>
